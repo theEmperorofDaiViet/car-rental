@@ -42,6 +42,7 @@ public class ShopService {
             existingShop.setShopname(shop.getShopname());
             existingShop.setFacilityname(shop.getFacilityname());
             existingShop.setAddress(shop.getAddress());
+            existingShop.setPhone(shop.getPhone());
             existingShop.setEmail(shop.getEmail());
             existingShop.setDescribes(shop.getDescribes());
             return shopRepository.save(existingShop);

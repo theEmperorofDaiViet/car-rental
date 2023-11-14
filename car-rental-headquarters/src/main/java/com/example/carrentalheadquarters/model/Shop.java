@@ -24,6 +24,10 @@ public class Shop {
 
     @Column
     @NotNull
+    private String phone;
+
+    @Column
+    @NotNull
     private String email;
 
     @Column
@@ -33,11 +37,12 @@ public class Shop {
 
     }
 
-    public Shop(Integer id, String facilityname, String shopname, String address, String email, String describes) {
+    public Shop(Integer id, String facilityname, String shopname, String address, String phone, String email, String describes) {
         this.id = id;
         this.facilityname = facilityname;
         this.shopname = shopname;
         this.address = address;
+        this.phone = phone;
         this.email = email;
         this.describes = describes;
     }
@@ -74,6 +79,14 @@ public class Shop {
         this.address = address;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -97,6 +110,7 @@ public class Shop {
                 ", facilityname='" + facilityname + '\'' +
                 ", shopname='" + shopname + '\'' +
                 ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", describes='" + describes + '\'' +
                 '}';
