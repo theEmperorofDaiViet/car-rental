@@ -3,6 +3,8 @@ package com.example.carrentalheadquarters.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 @Entity
 public class Asset {
 
@@ -14,13 +16,17 @@ public class Asset {
     @NotNull
     private String assetname;
 
+    @OneToMany(mappedBy = "asset")
+    private List<ContactAsset> contactAssetList;
+
     public Asset() {
 
     }
 
-    public Asset(Integer id, String assetname) {
+    public Asset(Integer id, String assetname, List<ContactAsset> contactAssetList) {
         this.id = id;
         this.assetname = assetname;
+        this.contactAssetList = contactAssetList;
     }
 
     public Integer getId() {
@@ -39,11 +45,20 @@ public class Asset {
         this.assetname = assetname;
     }
 
+    public List<ContactAsset> getContactAssetList() {
+        return contactAssetList;
+    }
+
+    public void setContactAssetList(List<ContactAsset> contactAssetList) {
+        this.contactAssetList = contactAssetList;
+    }
+
     @Override
     public String toString() {
         return "Asset{" +
                 "id=" + id +
                 ", assetname='" + assetname + '\'' +
+                ", contactAssetList=" + contactAssetList +
                 '}';
     }
 }

@@ -3,6 +3,8 @@ package com.example.carrentalheadquarters.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 @Entity
 public class Car {
 
@@ -37,6 +39,15 @@ public class Car {
     @Column
     private String describes;
 
+    @OneToMany(mappedBy = "car")
+    private List<CarBill> carBillList;
+
+    @OneToMany(mappedBy = "car")
+    private List<CarContact> carContactList;
+
+    @OneToMany(mappedBy = "car")
+    private List<CarCondition> carConditionList;
+
     @ManyToOne
     @JoinColumn(name = "shopid", referencedColumnName = "id")
     private Shop shop;
@@ -45,7 +56,7 @@ public class Car {
 
     }
 
-    public Car(Integer id, String carname, String rangevehicle, String licenseplate, String carlife, Integer expense, boolean status, String describes, Shop shop) {
+    public Car(Integer id, String carname, String rangevehicle, String licenseplate, String carlife, Integer expense, boolean status, String describes, List<CarBill> carBillList, List<CarContact> carContactList, List<CarCondition> carConditionList, Shop shop) {
         this.id = id;
         this.carname = carname;
         this.rangevehicle = rangevehicle;
@@ -54,6 +65,9 @@ public class Car {
         this.expense = expense;
         this.status = status;
         this.describes = describes;
+        this.carBillList = carBillList;
+        this.carContactList = carContactList;
+        this.carConditionList = carConditionList;
         this.shop = shop;
     }
 
@@ -121,6 +135,30 @@ public class Car {
         this.describes = describes;
     }
 
+    public List<CarBill> getCarBillList() {
+        return carBillList;
+    }
+
+    public void setCarBillList(List<CarBill> carBillList) {
+        this.carBillList = carBillList;
+    }
+
+    public List<CarContact> getCarContactList() {
+        return carContactList;
+    }
+
+    public void setCarContactList(List<CarContact> carContactList) {
+        this.carContactList = carContactList;
+    }
+
+    public List<CarCondition> getCarConditionList() {
+        return carConditionList;
+    }
+
+    public void setCarConditionList(List<CarCondition> carConditionList) {
+        this.carConditionList = carConditionList;
+    }
+
     public Shop getShop() {
         return shop;
     }
@@ -140,6 +178,9 @@ public class Car {
                 ", expense=" + expense +
                 ", status=" + status +
                 ", describes='" + describes + '\'' +
+                ", carBillList=" + carBillList +
+                ", carContactList=" + carContactList +
+                ", carConditionList=" + carConditionList +
                 ", shop=" + shop +
                 '}';
     }

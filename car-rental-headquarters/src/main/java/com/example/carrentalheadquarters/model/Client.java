@@ -3,6 +3,8 @@ package com.example.carrentalheadquarters.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 @Entity
 public class Client {
 
@@ -25,16 +27,20 @@ public class Client {
     @Column
     private String note;
 
+    @OneToMany(mappedBy = "client")
+    private List<ShopClient> shopClientList;
+
     public Client() {
 
     }
 
-    public Client(Integer id, String name, String phone, String address, String note) {
+    public Client(Integer id, String name, String phone, String address, String note, List<ShopClient> shopClientList) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.note = note;
+        this.shopClientList = shopClientList;
     }
 
     public Integer getId() {
@@ -77,6 +83,14 @@ public class Client {
         this.note = note;
     }
 
+    public List<ShopClient> getShopClientList() {
+        return shopClientList;
+    }
+
+    public void setShopClientList(List<ShopClient> shopClientList) {
+        this.shopClientList = shopClientList;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
@@ -85,6 +99,7 @@ public class Client {
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", note='" + note + '\'' +
+                ", shopClientList=" + shopClientList +
                 '}';
     }
 }

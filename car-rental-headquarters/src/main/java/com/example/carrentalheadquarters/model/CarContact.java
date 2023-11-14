@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class CarContact {
@@ -15,6 +16,9 @@ public class CarContact {
     @Column
     @NotNull
     private Date returndate;
+
+    @OneToMany(mappedBy = "carcontact")
+    private List<ContactAsset> contactAssetList;
 
     @ManyToOne
     @JoinColumn(name = "contactid", referencedColumnName = "id")
@@ -28,9 +32,10 @@ public class CarContact {
 
     }
 
-    public CarContact(Integer id, Date returndate, Contact contact, Car car) {
+    public CarContact(Integer id, Date returndate, List<ContactAsset> contactAssetList, Contact contact, Car car) {
         this.id = id;
         this.returndate = returndate;
+        this.contactAssetList = contactAssetList;
         this.contact = contact;
         this.car = car;
     }
@@ -49,6 +54,14 @@ public class CarContact {
 
     public void setReturndate(Date returndate) {
         this.returndate = returndate;
+    }
+
+    public List<ContactAsset> getContactAssetList() {
+        return contactAssetList;
+    }
+
+    public void setContactAssetList(List<ContactAsset> contactAssetList) {
+        this.contactAssetList = contactAssetList;
     }
 
     public Contact getContact() {
@@ -72,6 +85,7 @@ public class CarContact {
         return "CarContact{" +
                 "id=" + id +
                 ", returndate=" + returndate +
+                ", contactAssetList=" + contactAssetList +
                 ", contact=" + contact +
                 ", car=" + car +
                 '}';

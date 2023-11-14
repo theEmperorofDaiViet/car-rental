@@ -3,6 +3,8 @@ package com.example.carrentalheadquarters.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 @Entity
 public class Condition {
 
@@ -18,14 +20,18 @@ public class Condition {
     @NotNull
     private Integer expense;
 
+    @OneToMany(mappedBy = "condition")
+    private List<CarCondition> carConditionList;
+
     public Condition() {
 
     }
 
-    public Condition(Integer id, String conditionname, Integer expense) {
+    public Condition(Integer id, String conditionname, Integer expense, List<CarCondition> carConditionList) {
         this.id = id;
         this.conditionname = conditionname;
         this.expense = expense;
+        this.carConditionList = carConditionList;
     }
 
     public Integer getId() {
@@ -52,12 +58,21 @@ public class Condition {
         this.expense = expense;
     }
 
+    public List<CarCondition> getCarConditionList() {
+        return carConditionList;
+    }
+
+    public void setCarConditionList(List<CarCondition> carConditionList) {
+        this.carConditionList = carConditionList;
+    }
+
     @Override
     public String toString() {
         return "Condition{" +
                 "id=" + id +
                 ", conditionname='" + conditionname + '\'' +
                 ", expense=" + expense +
+                ", carConditionList=" + carConditionList +
                 '}';
     }
 }

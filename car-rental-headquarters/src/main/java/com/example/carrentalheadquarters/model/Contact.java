@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class Contact {
@@ -20,6 +21,9 @@ public class Contact {
     @NotNull
     private Integer deposit;
 
+    @OneToMany(mappedBy = "contact")
+    private List<CarContact> carContactList;
+
     @ManyToOne
     @JoinColumn(name = "clientid", referencedColumnName = "id")
     private Client client;
@@ -32,12 +36,13 @@ public class Contact {
 
     }
 
-    public Contact(Integer id, Date rentaldate, Integer deposit, Client client, Staff staff) {
+    public Contact(Integer id, Date rentaldate, Integer deposit, Client client, Staff staff, List<CarContact> carContactList) {
         this.id = id;
         this.rentaldate = rentaldate;
         this.deposit = deposit;
         this.client = client;
         this.staff = staff;
+        this.carContactList = carContactList;
     }
 
     public Integer getId() {
@@ -80,12 +85,21 @@ public class Contact {
         this.staff = staff;
     }
 
+    public List<CarContact> getCarContactList() {
+        return carContactList;
+    }
+
+    public void setCarContactList(List<CarContact> carContactList) {
+        this.carContactList = carContactList;
+    }
+
     @Override
     public String toString() {
         return "Contact{" +
                 "id=" + id +
                 ", rentaldate=" + rentaldate +
                 ", deposit=" + deposit +
+                ", carContactList=" + carContactList +
                 ", client=" + client +
                 ", staff=" + staff +
                 '}';
