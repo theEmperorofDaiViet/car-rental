@@ -37,7 +37,6 @@ public class Car {
     @Column
     private String describes;
 
-    @Column
     @ManyToOne
     @JoinColumn(name = "shopid", referencedColumnName = "id")
     private Shop shop;

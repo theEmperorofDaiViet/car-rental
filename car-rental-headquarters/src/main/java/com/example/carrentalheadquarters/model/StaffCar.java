@@ -3,7 +3,7 @@ package com.example.carrentalheadquarters.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 public class StaffCar {

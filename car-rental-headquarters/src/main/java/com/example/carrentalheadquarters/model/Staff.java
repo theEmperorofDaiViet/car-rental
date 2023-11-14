@@ -32,7 +32,7 @@ public class Staff {
 
     @Column
     @NotNull
-    private boolean ismanager;
+    private boolean ismanagement;
 
     @ManyToOne
     @JoinColumn(name = "shopid", referencedColumnName = "id")
@@ -43,14 +43,14 @@ public class Staff {
 
     }
 
-    public Staff(Integer id, String name, String phone, String address, String username, String password, boolean ismanager, Shop shop) {
+    public Staff(Integer id, String name, String phone, String address, String username, String password, boolean ismanagement, Shop shop) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.username = username;
         this.password = password;
-        this.ismanager = ismanager;
+        this.ismanagement = ismanagement;
         this.shop = shop;
     }
 
@@ -102,12 +102,12 @@ public class Staff {
         this.password = password;
     }
 
-    public boolean isIsmanager() {
-        return ismanager;
+    public boolean isIsmanagement() {
+        return ismanagement;
     }
 
-    public void setIsmanager(boolean ismanager) {
-        this.ismanager = ismanager;
+    public void setIsmanagement(boolean ismanagement) {
+        this.ismanagement = ismanagement;
     }
 
     public Shop getShop() {
@@ -127,7 +127,7 @@ public class Staff {
                 ", address='" + address + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", ismanager=" + ismanager +
+                ", ismanagement=" + ismanagement +
                 ", shop=" + shop +
                 '}';
     }
