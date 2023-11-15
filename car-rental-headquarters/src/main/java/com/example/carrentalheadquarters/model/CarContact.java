@@ -1,5 +1,6 @@
 package com.example.carrentalheadquarters.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -18,6 +19,7 @@ public class CarContact {
     private Date returndate;
 
     @OneToMany(mappedBy = "carcontact")
+    @JsonIgnore
     private List<ContactAsset> contactAssetList;
 
     @ManyToOne

@@ -1,5 +1,6 @@
 package com.example.carrentalheadquarters.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -22,6 +23,7 @@ public class Contact {
     private Integer deposit;
 
     @OneToMany(mappedBy = "contact")
+    @JsonIgnore
     private List<CarContact> carContactList;
 
     @ManyToOne

@@ -1,5 +1,6 @@
 package com.example.carrentalheadquarters.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -17,6 +18,7 @@ public class Asset {
     private String assetname;
 
     @OneToMany(mappedBy = "asset")
+    @JsonIgnore
     private List<ContactAsset> contactAssetList;
 
     public Asset() {

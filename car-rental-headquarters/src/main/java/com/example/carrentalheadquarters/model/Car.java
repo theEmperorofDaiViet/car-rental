@@ -1,5 +1,6 @@
 package com.example.carrentalheadquarters.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -40,12 +41,15 @@ public class Car {
     private String describes;
 
     @OneToMany(mappedBy = "car")
+    @JsonIgnore
     private List<CarBill> carBillList;
 
     @OneToMany(mappedBy = "car")
+    @JsonIgnore
     private List<CarContact> carContactList;
 
     @OneToMany(mappedBy = "car")
+    @JsonIgnore
     private List<CarCondition> carConditionList;
 
     @ManyToOne

@@ -1,5 +1,6 @@
 package com.example.carrentalheadquarters.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -21,6 +22,7 @@ public class Condition {
     private Integer expense;
 
     @OneToMany(mappedBy = "condition")
+    @JsonIgnore
     private List<CarCondition> carConditionList;
 
     public Condition() {
