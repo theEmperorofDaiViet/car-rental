@@ -1,7 +1,11 @@
 package com.example.carrentalheadquarters.service;
 
+import com.example.carrentalheadquarters.dto.ShopClientDTO;
+import com.example.carrentalheadquarters.dto.ShopRevenueByMonthDTO;
+import com.example.carrentalheadquarters.dto.ShopRevenueByYearDTO;
+import com.example.carrentalheadquarters.dto.ShopRevenueDTO;
 import com.example.carrentalheadquarters.model.Shop;
-import com.example.carrentalheadquarters.repository.ShopRepository;
+import com.example.carrentalheadquarters.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +17,18 @@ public class ShopService {
 
     @Autowired
     private ShopRepository shopRepository;
+
+    @Autowired
+    private ShopRevenueRepositoryImpl shopRevenueRepository;
+
+    @Autowired
+    private ShopRevenueByMonthRepositoryImpl shopRevenueByMonthRepository;
+
+    @Autowired
+    private ShopRevenueByYearRepositoryImpl shopRevenueByYearRepository;
+
+    @Autowired
+    private ShopClientDTORepositoryImpl shopClientDTORepository;
 
     public List<Shop> list(){
         return shopRepository.findAll();
@@ -51,5 +67,21 @@ public class ShopService {
 
     public void delete(Integer id){
         shopRepository.deleteById(id);
+    }
+
+    public List<ShopRevenueDTO> getAllRevenue(){
+        return  shopRevenueRepository.getAllRevenue();
+    }
+
+    public List<ShopRevenueByMonthDTO> getRevenueByMonth(Integer shopid){
+        return shopRevenueByMonthRepository.getRevenueByMonth(shopid);
+    }
+
+    public List<ShopRevenueByYearDTO> getRevenueByYear(Integer shopid){
+        return shopRevenueByYearRepository.getRevenueByYear(shopid);
+    }
+
+    public List<ShopClientDTO> getAllClient(){
+        return  shopClientDTORepository.getAllClient();
     }
 }

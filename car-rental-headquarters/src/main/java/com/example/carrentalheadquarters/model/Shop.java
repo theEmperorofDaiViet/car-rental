@@ -1,5 +1,6 @@
 package com.example.carrentalheadquarters.model;
 
+import com.example.carrentalheadquarters.dto.ShopRevenueDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

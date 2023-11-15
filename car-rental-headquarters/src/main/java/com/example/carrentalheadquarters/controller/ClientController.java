@@ -1,5 +1,6 @@
 package com.example.carrentalheadquarters.controller;
 
+import com.example.carrentalheadquarters.dto.ClientRevenueDTO;
 import com.example.carrentalheadquarters.model.Client;
 import com.example.carrentalheadquarters.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,10 @@ public class ClientController {
     private ResponseEntity<String> delete(@PathVariable("id") Integer id){
         clientService.delete(id);
         return new ResponseEntity<>("Client has been deleted!", HttpStatus.OK);
+    }
+
+    @GetMapping("/revenue")
+    private ResponseEntity<List<ClientRevenueDTO>> getRevenueByClient(){
+        return new ResponseEntity<>(clientService.getRevenueByClient(), HttpStatus.OK);
     }
 }

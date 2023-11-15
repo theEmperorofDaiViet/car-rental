@@ -1,7 +1,9 @@
 package com.example.carrentalheadquarters.service;
 
+import com.example.carrentalheadquarters.dto.ClientRevenueDTO;
 import com.example.carrentalheadquarters.model.Client;
 import com.example.carrentalheadquarters.repository.ClientRepository;
+import com.example.carrentalheadquarters.repository.ClientRevenueRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class ClientService {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private ClientRevenueRepositoryImpl clientRevenueRepository;
 
     public List<Client> list(){
         return clientRepository.findAll();
@@ -49,5 +54,9 @@ public class ClientService {
 
     public void delete(Integer id){
         clientRepository.deleteById(id);
+    }
+
+    public List<ClientRevenueDTO> getRevenueByClient(){
+        return  clientRevenueRepository.getRevenueByClient();
     }
 }
