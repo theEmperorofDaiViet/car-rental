@@ -1,38 +1,38 @@
 package com.example.carrentalheadquarters.repository;
 
 import com.example.carrentalheadquarters.dto.ShopRevenueByMonthDTO;
-import com.example.carrentalheadquarters.dto.ShopRevenueDTO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.StoredProcedureQuery;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ShopRevenueRepositoryImpl implements ShopRevenueRepository{
+public class ShopRevenueByMonthDTORepositoryImpl implements ShopRevenueByMonthDTORepository {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    public List<ShopRevenueDTO> getAllRevenue(){
-        StoredProcedureQuery getAllRevenue = em.createNamedStoredProcedureQuery("getAllRevenue");
-        return getAllRevenue.getResultList();
+    public List<ShopRevenueByMonthDTO> getRevenueByMonth(Integer shopid){
+        StoredProcedureQuery getRevenueByMonth = em.createNamedStoredProcedureQuery("getRevenueByMonth");
+        getRevenueByMonth.setParameter("shopid", shopid);
+
+        return getRevenueByMonth.getResultList();
     }
 
     @Override
-    public <S extends ShopRevenueDTO> S save(S entity) {
+    public <S extends ShopRevenueByMonthDTO> S save(S entity) {
         return null;
     }
 
     @Override
-    public <S extends ShopRevenueDTO> Iterable<S> saveAll(Iterable<S> entities) {
+    public <S extends ShopRevenueByMonthDTO> Iterable<S> saveAll(Iterable<S> entities) {
         return null;
     }
 
     @Override
-    public Optional<ShopRevenueDTO> findById(Integer integer) {
+    public Optional<ShopRevenueByMonthDTO> findById(Integer integer) {
         return Optional.empty();
     }
 
@@ -42,12 +42,12 @@ public class ShopRevenueRepositoryImpl implements ShopRevenueRepository{
     }
 
     @Override
-    public Iterable<ShopRevenueDTO> findAll() {
+    public Iterable<ShopRevenueByMonthDTO> findAll() {
         return null;
     }
 
     @Override
-    public Iterable<ShopRevenueDTO> findAllById(Iterable<Integer> integers) {
+    public Iterable<ShopRevenueByMonthDTO> findAllById(Iterable<Integer> integers) {
         return null;
     }
 
@@ -62,7 +62,7 @@ public class ShopRevenueRepositoryImpl implements ShopRevenueRepository{
     }
 
     @Override
-    public void delete(ShopRevenueDTO entity) {
+    public void delete(ShopRevenueByMonthDTO entity) {
 
     }
 
@@ -72,7 +72,7 @@ public class ShopRevenueRepositoryImpl implements ShopRevenueRepository{
     }
 
     @Override
-    public void deleteAll(Iterable<? extends ShopRevenueDTO> entities) {
+    public void deleteAll(Iterable<? extends ShopRevenueByMonthDTO> entities) {
 
     }
 

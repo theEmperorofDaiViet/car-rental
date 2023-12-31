@@ -4,7 +4,7 @@ import com.example.carrentalheadquarters.dto.ClientRevenueDTO;
 
 import java.util.List;
 
-public interface ClientRevenueRepositoryCustom {
+public interface ClientRevenueDTORepositoryCustom {
 
     List<ClientRevenueDTO> getRevenueByClient();
 }

@@ -19,13 +19,13 @@ public class ShopService {
     private ShopRepository shopRepository;
 
     @Autowired
-    private ShopRevenueRepositoryImpl shopRevenueRepository;
+    private ShopRevenueDTORepositoryImpl shopRevenueDTORepository;
 
     @Autowired
-    private ShopRevenueByMonthRepositoryImpl shopRevenueByMonthRepository;
+    private ShopRevenueByMonthDTORepositoryImpl shopRevenueByMonthDTORepository;
 
     @Autowired
-    private ShopRevenueByYearRepositoryImpl shopRevenueByYearRepository;
+    private ShopRevenueByYearDTORepositoryImpl shopRevenueByYearDTORepository;
 
     @Autowired
     private ShopClientDTORepositoryImpl shopClientDTORepository;
@@ -70,15 +70,15 @@ public class ShopService {
     }
 
     public List<ShopRevenueDTO> getAllRevenue(){
-        return  shopRevenueRepository.getAllRevenue();
+        return  shopRevenueDTORepository.getAllRevenue();
     }
 
     public List<ShopRevenueByMonthDTO> getRevenueByMonth(Integer shopid){
-        return shopRevenueByMonthRepository.getRevenueByMonth(shopid);
+        return shopRevenueByMonthDTORepository.getRevenueByMonth(shopid);
     }
 
     public List<ShopRevenueByYearDTO> getRevenueByYear(Integer shopid){
-        return shopRevenueByYearRepository.getRevenueByYear(shopid);
+        return shopRevenueByYearDTORepository.getRevenueByYear(shopid);
     }
 
     public List<ShopClientDTO> getAllClient(){

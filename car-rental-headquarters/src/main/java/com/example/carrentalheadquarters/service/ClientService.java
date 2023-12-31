@@ -3,7 +3,7 @@ package com.example.carrentalheadquarters.service;
 import com.example.carrentalheadquarters.dto.ClientRevenueDTO;
 import com.example.carrentalheadquarters.model.Client;
 import com.example.carrentalheadquarters.repository.ClientRepository;
-import com.example.carrentalheadquarters.repository.ClientRevenueRepositoryImpl;
+import com.example.carrentalheadquarters.repository.ClientRevenueDTORepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class ClientService {
     private ClientRepository clientRepository;
 
     @Autowired
-    private ClientRevenueRepositoryImpl clientRevenueRepository;
+    private ClientRevenueDTORepositoryImpl clientRevenueDTORepository;
 
     public List<Client> list(){
         return clientRepository.findAll();
@@ -57,6 +57,6 @@ public class ClientService {
     }
 
     public List<ClientRevenueDTO> getRevenueByClient(){
-        return  clientRevenueRepository.getRevenueByClient();
+        return  clientRevenueDTORepository.getRevenueByClient();
     }
 }
