@@ -53,9 +53,42 @@ You can install this application by cloning this repository into your current wo
 ```sh
 git clone https://github.com/theEmperorofDaiViet/car-rental.git
 ```
-After cloning the repository, you can open the project by IntelliJ IDEA.
 
 ## Project Setup
+
+### Project Explorer
+- [/car-rental-headquarters](/car-rental-headquarters) - the application installed at the headquarters of the car rental agency.
+- [/car-rental-branch](/car-rental-branch) - the application installed at each branch.
+
+All SQL script files are located in [/src/main/resources/database](/) of both [headquarters](/car-rental-headquarters/src/main/resources/database) and [branch](/car-rental-branch/src/main/resources/database) application.
+
+### Create a VPN
+Create a network by Radmin VPN. Make sure that all computers at the headquarters and at each branch are online and joined this network.
+
+### Firewall Configurations
+Add inbound rules for the SQL Server ports to allow access, or simply turn off the firewall if you don't mind.
+
+### Database Configurations
+Run the ***SQL Server 2022 installer*** and create an instance of SQL Server for the headquarters and each branch:
+- Use the **Developer** Edition.
+- Select the *Database Engine Services* and *SQL Server Replication* feature.
+- Use **Mixed Mode** for Authentication Mode and specify the password for the *sa* account.
+
+Open ***SQL Server Configuration Manager***. Select *SQL Server Network Configuration*: enable TCP/IP and specify IP address (in the VPN created before) & SQL Server port of each computer.
+
+Open ***SQL Server Management Studio***.
+
+Create the database at the headquarters using [*this script*](/car-rental-headquarters/src/main/resources/database/schema/CarRentalShop.sql). You can generate some dummy data using python and sql scripts under the [/data](/car-rental-headquarters/src/main/resources/database/data) directory.
+
+Then, distribute the database to each branch by *Database Replication & Fragmentation*:
+- Create a folder named :open_file_folder: *REPLDATA* as the ***snapshot folder***. Share the folder to *Everyone* and set the permission level to *Read/Write*.
+- Configure the ***Distributor*** using the wizard in SSMS or [*SQL script*](/car-rental-headquarters/src/main/resources/database/pub-sub/ConfigureDistribution.sql).
+- Create a ***Merge Publication*** using the wizard in SSMS or [*SQL script*](/car-rental-headquarters/src/main/resources/database/pub-sub/CreatePublication.sql).
+- Create a ***Subscription*** for each branch using the wizard in SSMS or [*SQL script*](/car-rental-headquarters/src/main/resources/database/pub-sub/NewSubscription.sql).
+
+Open the headquarters database, create ***stored procedures*** and ***triggers*** using SQL scripts under the [/stored procedures](/car-rental-headquarters/src/main/resources/database/stored%20procedures) and [/triggers](/car-rental-headquarters/src/main/resources/database/triggers) directory.
+
+Open each branch database, create ***stored procedures*** and ***triggers*** using SQL scripts under the [/stored procedures](/car-rental-branch/src/main/resources/database/stored%20procedures) and [/triggers](/car-rental-branch/src/main/resources/database/triggers) directory.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
