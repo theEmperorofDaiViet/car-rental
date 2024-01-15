@@ -18,7 +18,7 @@
       </ul>
     </li>
     <li><a href="#key-features">Key Features</a></li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#api-documentation">API Documentation</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -81,22 +81,65 @@ Open ***SQL Server Management Studio***.
 Create the database at the headquarters using [*this script*](/car-rental-headquarters/src/main/resources/database/schema/CarRentalShop.sql). You can generate some dummy data using python and sql scripts under the [/data](/car-rental-headquarters/src/main/resources/database/data) directory.
 
 Then, distribute the database to each branch by *Database Replication & Fragmentation*:
-- Create a folder named :open_file_folder: *REPLDATA* as the ***snapshot folder***. Share the folder to *Everyone* and set the permission level to *Read/Write*.
+- Create a folder named :open_file_folder:*REPLDATA* as the ***snapshot folder***. Share the folder to *Everyone* and set the permission level to *Read/Write*.
 - Configure the ***Distributor*** using the wizard in SSMS or [*SQL script*](/car-rental-headquarters/src/main/resources/database/pub-sub/ConfigureDistribution.sql).
 - Create a ***Merge Publication*** using the wizard in SSMS or [*SQL script*](/car-rental-headquarters/src/main/resources/database/pub-sub/CreatePublication.sql).
 - Create a ***Subscription*** for each branch using the wizard in SSMS or [*SQL script*](/car-rental-headquarters/src/main/resources/database/pub-sub/NewSubscription.sql).
+
+Don't forget to turn on the ***SQL Server Agent*** service.
 
 Open the headquarters database, create ***stored procedures*** and ***triggers*** using SQL scripts under the [/stored procedures](/car-rental-headquarters/src/main/resources/database/stored%20procedures) and [/triggers](/car-rental-headquarters/src/main/resources/database/triggers) directory.
 
 Open each branch database, create ***stored procedures*** and ***triggers*** using SQL scripts under the [/stored procedures](/car-rental-branch/src/main/resources/database/stored%20procedures) and [/triggers](/car-rental-branch/src/main/resources/database/triggers) directory.
 
+### Spring Boot Application Configurations
+Open the **application.properties** file in [/src/main/resources](/) of both [headquarters](/car-rental-headquarters/src/main/resources/application.properties) and [branch](/car-rental-branch/src/main/resources/application.properties) application and change the property values about the datasource to fit your own settings.
+
+### Run the Application
+Run the application in the IDE, or open a terminal in the root of the application and type the following command:
+```sh
+mvnw spring-boot:run
+```
+It runs on port 8080 by default. Visit [*http://localhost:8080/api-docs*](http://localhost:8080/api-docs) for the **api-docs** and [*http://localhost:8080/swagger-ui/index.html*](http://localhost:8080/swagger-ui/index.html) for the **Swagger UI** to visualize and interact with the API.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Key Features
+- Distributed Database over a VPN: 
+  - Database Replication & Fragmentation
+  - Stored Procedures & Triggers
++ API:
+  + Basic CRUD operations
+  + Calling Stored Procedures from Spring Data JPA Repositories
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+# API Documentation
+<table>
+  <tr>
+    <th><h2 align="center">Headquarters</h2></th>
+    <th><h2 align="center">Branch</h2></th>
+  </tr>
+  <tr>
+    <td valign="top"><img width="500px" src="car-rental-headquarters/src/main/resources/static/images/api-headquarters.jpeg"></td>
+    <td valign="top"><img width="500px" src="car-rental-branch/src/main/resources/static/images/api-branch.jpeg"></td>
+  </tr>
+</table>
+
 # Usage
+<u>***Example:***</u> calling stored procedures from the headquarters application
+<p align="center">
+    <img src="car-rental-headquarters/src/main/resources/static/images/calling-stored-procedures.png">
+</p>
+
+<u>***Result***</u>:
+<p align="center">
+    <img src="car-rental-headquarters/src/main/resources/static/images/ALL_REVENUE.jpeg">
+    <img src="car-rental-headquarters/src/main/resources/static/images/REVENUEBYMONTH.jpeg">
+    <img src="car-rental-headquarters/src/main/resources/static/images/REVENUEBYYEAR.jpeg">
+    <img src="car-rental-headquarters/src/main/resources/static/images/ALL_CLIENT.jpeg">
+    <img src="car-rental-headquarters/src/main/resources/static/images/REVENUEFROMEACHCLIENT.jpeg">
+</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
