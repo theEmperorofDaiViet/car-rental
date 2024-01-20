@@ -19,6 +19,7 @@
     </li>
     <li><a href="#key-features">Key Features</a></li>
     <li><a href="#api-documentation">API Documentation</a></li>
+    <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -127,12 +128,12 @@ It runs on port 8080 by default. Visit [*http://localhost:8080/api-docs*](http:/
 </table>
 
 # Usage
-<u>***Example:***</u> calling stored procedures from the headquarters application
+***Example:*** calling stored procedures from the headquarters application
 <p align="center">
     <img src="car-rental-headquarters/src/main/resources/static/images/calling-stored-procedures.png">
 </p>
 
-<u>***Result***</u>:
+***Result:***
 <p align="center">
     <img src="car-rental-headquarters/src/main/resources/static/images/ALL_REVENUE.jpeg">
     <img src="car-rental-headquarters/src/main/resources/static/images/REVENUEBYMONTH.jpeg">
